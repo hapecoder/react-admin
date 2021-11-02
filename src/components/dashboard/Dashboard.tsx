@@ -2,19 +2,13 @@
  * Created by hao.cheng on 2017/5/3.
  */
 import React from 'react';
-import { Row, Col, Card, Timeline } from 'antd';
+import { Row, Col, Card, Timeline, Statistic, Button } from 'antd';
 import BreadcrumbCustom from '../widget/BreadcrumbCustom';
 import EchartsViews from './EchartsViews';
 import EchartsProjects from './EchartsProjects';
-import b1 from '../../style/imgs/b1.jpg';
-import {
-    CameraOutlined,
-    CloudOutlined,
-    HeartOutlined,
-    MailOutlined,
-    SyncOutlined,
-} from '@ant-design/icons';
-
+import { SyncOutlined } from '@ant-design/icons';
+import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
+import MyIcon from '../ui/Icons';
 class Dashboard extends React.Component {
     render() {
         return (
@@ -26,11 +20,14 @@ class Dashboard extends React.Component {
                             <Card bordered={false}>
                                 <div className="clear y-center">
                                     <div className="pull-left mr-m">
-                                        <HeartOutlined className="text-2x text-danger" />
+                                        <MyIcon
+                                            type="icon-dianya"
+                                            className="text-2x text-danger"
+                                        />
                                     </div>
                                     <div className="clear">
-                                        <div className="text-muted">收藏</div>
-                                        <h2>301</h2>
+                                        <div className="text-muted">电压</div>
+                                        <h2>55.2V</h2>
                                     </div>
                                 </div>
                             </Card>
@@ -39,11 +36,27 @@ class Dashboard extends React.Component {
                             <Card bordered={false}>
                                 <div className="clear y-center">
                                     <div className="pull-left mr-m">
-                                        <CloudOutlined type="cloud" className="text-2x" />
+                                        <MyIcon
+                                            type="icon-dianliu"
+                                            className="text-2x text-success"
+                                        />
                                     </div>
                                     <div className="clear">
-                                        <div className="text-muted">云数据</div>
-                                        <h2>30122</h2>
+                                        <div className="text-muted">电流</div>
+                                        <h2>-0.6A</h2>
+                                    </div>
+                                </div>
+                            </Card>
+                        </div>
+                        <div className="gutter-box">
+                            <Card bordered={false}>
+                                <div className="clear y-center">
+                                    <div className="pull-left mr-m">
+                                        <MyIcon type="icon-wendu" className="text-2x text-info" />
+                                    </div>
+                                    <div className="clear">
+                                        <div className="text-muted">温度</div>
+                                        <h2>18.125℃</h2>
                                     </div>
                                 </div>
                             </Card>
@@ -54,11 +67,14 @@ class Dashboard extends React.Component {
                             <Card bordered={false}>
                                 <div className="clear y-center">
                                     <div className="pull-left mr-m">
-                                        <CameraOutlined className="text-2x text-info" />
+                                        <MyIcon
+                                            type="icon-dianchifang"
+                                            className="text-2x text-info"
+                                        />
                                     </div>
                                     <div className="clear">
-                                        <div className="text-muted">照片</div>
-                                        <h2>802</h2>
+                                        <div className="text-muted">SOC</div>
+                                        <h2>93.3%</h2>
                                     </div>
                                 </div>
                             </Card>
@@ -67,11 +83,27 @@ class Dashboard extends React.Component {
                             <Card bordered={false}>
                                 <div className="clear y-center">
                                     <div className="pull-left mr-m">
-                                        <MailOutlined className="text-2x text-success" />
+                                        <MyIcon
+                                            type="icon-jiankang"
+                                            className="text-2x text-success"
+                                        />
                                     </div>
                                     <div className="clear">
-                                        <div className="text-muted">邮件</div>
-                                        <h2>102</h2>
+                                        <div className="text-muted">SOH</div>
+                                        <h2>99.1%</h2>
+                                    </div>
+                                </div>
+                            </Card>
+                        </div>
+                        <div className="gutter-box">
+                            <Card bordered={false}>
+                                <div className="clear y-center">
+                                    <div className="pull-left mr-m">
+                                        <MyIcon type="icon-gonglv" className="text-2x" />
+                                    </div>
+                                    <div className="clear">
+                                        <div className="text-muted">SOP</div>
+                                        <h2>10W</h2>
                                     </div>
                                 </div>
                             </Card>
@@ -90,26 +122,47 @@ class Dashboard extends React.Component {
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <div className="pb-m">
-                                    <h3>任务</h3>
-                                    <small>10个已经完成，2个待完成，1个正在进行中</small>
+                                    <h3>均衡管理</h3>
                                 </div>
                                 <span className="card-tool">
                                     <SyncOutlined />
                                 </span>
-                                <Timeline>
-                                    <Timeline.Item color="green">新版本迭代会</Timeline.Item>
-                                    <Timeline.Item color="green">完成网站设计初版</Timeline.Item>
-                                    <Timeline.Item color="red">
-                                        <p>联调接口</p>
-                                        <p>功能验收</p>
-                                    </Timeline.Item>
-
-                                    <Timeline.Item color="#108ee9">
-                                        <p>登录功能设计</p>
-                                        <p>权限验证</p>
-                                        <p>页面排版</p>
-                                    </Timeline.Item>
-                                </Timeline>
+                                <Row gutter={16} className="mb-l">
+                                    <Col span={8}>
+                                        <Statistic
+                                            title="电压最大值"
+                                            value={'3.35V'}
+                                            prefix={<ArrowDownOutlined />}
+                                            valueStyle={{ color: '#cf1322' }}
+                                        />
+                                    </Col>
+                                    <Col span={8}>
+                                        <Statistic
+                                            title="电压最小值"
+                                            value={'3.29V'}
+                                            prefix={<ArrowUpOutlined />}
+                                            valueStyle={{ color: '#3f8600' }}
+                                        />
+                                    </Col>
+                                    <Col span={8}>
+                                        <Statistic
+                                            title="电压极差"
+                                            value={'0.04V'}
+                                            prefix={<ArrowDownOutlined />}
+                                            valueStyle={{ color: '#cf1322' }}
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row gutter={16} className="mb-m">
+                                    <Button type="primary" block>
+                                        开启均衡
+                                    </Button>
+                                </Row>
+                                <Row gutter={16} className="mb-m">
+                                    <Button type="primary" block>
+                                        均衡记录
+                                    </Button>
+                                </Row>
                             </Card>
                         </div>
                     </Col>
@@ -117,70 +170,36 @@ class Dashboard extends React.Component {
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 <div className="pb-m">
-                                    <h3>消息栏</h3>
+                                    <h3>最新异常情况</h3>
+                                    <small>3个轻度警报，1个中度警报，0个严重警报</small>
                                 </div>
                                 <span className="card-tool">
                                     <SyncOutlined />
                                 </span>
-                                <ul className="list-group no-border">
-                                    <li className="list-group-item">
-                                        <span className="pull-left w-40 mr-m">
-                                            <img
-                                                src={b1}
-                                                className="img-responsive img-circle"
-                                                alt="test"
-                                            />
-                                        </span>
-                                        <div className="clear">
-                                            <span className="block">鸣人</span>
-                                            <span className="text-muted">终于当上火影了！</span>
-                                        </div>
-                                    </li>
-                                    <li className="list-group-item">
-                                        <span className="pull-left w-40 mr-m">
-                                            <img
-                                                src={b1}
-                                                className="img-responsive img-circle"
-                                                alt="test"
-                                            />
-                                        </span>
-                                        <div className="clear">
-                                            <span className="block">佐助</span>
-                                            <span className="text-muted">吊车尾~~</span>
-                                        </div>
-                                    </li>
-                                    <li className="list-group-item">
-                                        <span className="pull-left w-40 mr-m">
-                                            <img
-                                                src={b1}
-                                                className="img-responsive img-circle"
-                                                alt="test"
-                                            />
-                                        </span>
-                                        <div className="clear">
-                                            <span className="block">小樱</span>
-                                            <span className="text-muted">佐助，你好帅！</span>
-                                        </div>
-                                    </li>
-                                    <li className="list-group-item">
-                                        <span className="pull-left w-40 mr-m">
-                                            <img
-                                                src={b1}
-                                                className="img-responsive img-circle"
-                                                alt="test"
-                                            />
-                                        </span>
-                                        <div className="clear">
-                                            <span className="block">雏田</span>
-                                            <span className="text-muted">
-                                                鸣人君。。。那个。。。我。。喜欢你..
-                                            </span>
-                                        </div>
-                                    </li>
-                                </ul>
+                                <Timeline mode="left">
+                                    <Timeline.Item color="green" label="2021/11/1 上午11:39:17">
+                                        <p>第16节电池</p>
+                                        <p>电压上限警告</p>
+                                    </Timeline.Item>
+                                    <Timeline.Item color="green" label="2021/11/1 上午11:39:01">
+                                        {' '}
+                                        <p>第12节电池</p>
+                                        <p>电压上限警告</p>
+                                    </Timeline.Item>
+                                    <Timeline.Item color="yellow" label="2021/11/1 上午11:23:54">
+                                        <p>第2节电池</p>
+                                        <p>电压过低警告</p>
+                                    </Timeline.Item>
+                                    <Timeline.Item color="green" label="2021/11/1 上午10:49:37">
+                                        {' '}
+                                        <p>第12节电池</p>
+                                        <p>电压上限警告</p>
+                                    </Timeline.Item>
+                                </Timeline>
                             </Card>
                         </div>
                     </Col>
+
                     <Col className="gutter-row" md={8}>
                         <div className="gutter-box">
                             <Card bordered={false}>

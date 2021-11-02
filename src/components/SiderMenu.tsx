@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { IFMenu } from '../routes/config';
 import { MenuProps } from 'antd/lib/menu';
-
+import MyIcon from './ui/Icons';
 const renderMenuItem = (
     item: IFMenu // item.route 菜单单独跳转的路由
 ) => (
-    <Menu.Item key={item.key}>
+    <Menu.Item
+        key={item.key}
+        icon={<MyIcon type={'icon-' + item.icon || ''} style={{ color: 'white' }} />}
+    >
         <Link to={(item.route || item.key) + (item.query || '')}>
             {/* {item.icon && <Icon type={item.icon} />} */}
             <span className="nav-text">{item.title}</span>
@@ -26,6 +29,7 @@ const renderSubMenu = (item: IFMenu) => {
                     <span className="nav-text">{item.title}</span>
                 </span>
             }
+            icon={<MyIcon type={'icon-' + item.icon || ''} />}
         >
             {item.subs!.map((sub) => (sub.subs ? renderSubMenu(sub) : renderMenuItem(sub)))}
         </Menu.SubMenu>

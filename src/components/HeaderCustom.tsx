@@ -3,9 +3,8 @@
  */
 import React, { useEffect, useState } from 'react';
 import screenfull from 'screenfull';
-import avater from '../style/imgs/b1.jpg';
 import SiderCustom from './SiderCustom';
-import { Menu, Layout, Badge, Popover } from 'antd';
+import { Menu, Layout, Badge, Popover, Dropdown } from 'antd';
 import { gitOauthToken, gitOauthInfo } from '../service';
 import { parseQuery } from '../utils';
 import { useHistory } from 'react-router-dom';
@@ -21,7 +20,6 @@ import {
     NotificationOutlined,
 } from '@ant-design/icons';
 const { Header } = Layout;
-const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
 type HeaderCustomProps = {
@@ -64,12 +62,28 @@ const HeaderCustom = (props: HeaderCustomProps) => {
         }
     };
     const menuClick = (e: any) => {
+        console.log(e.currentTarget);
         e.key === 'logout' && logout();
     };
     const logout = () => {
         umbrella.removeLocalStorage('user');
         history.push('/login');
     };
+    const menu = (
+        <Menu>
+            <MenuItemGroup title="用户中心">
+                <Menu.Item key="setting:1">你好 - {user?.userName}</Menu.Item>
+                <Menu.Item key="setting:2">个人信息</Menu.Item>
+                <Menu.Item key="logout">
+                    <span onClick={logout}>退出登录</span>
+                </Menu.Item>
+            </MenuItemGroup>
+            <MenuItemGroup title="设置中心">
+                <Menu.Item key="setting:3">个人设置</Menu.Item>
+                <Menu.Item key="setting:4">系统设置</Menu.Item>
+            </MenuItemGroup>
+        </Menu>
+    );
     return (
         <Header className="custom-theme header">
             {responsive?.isMobile ? (
@@ -102,33 +116,20 @@ const HeaderCustom = (props: HeaderCustomProps) => {
                     <PwaInstaller />
                 </Menu.Item>
                 <Menu.Item key="full">
-                    <ArrowsAltOutlined onClick={screenFull} />
+                    <ArrowsAltOutlined onClick={screenFull} style={{ fontSize: '20px' }} />
                 </Menu.Item>
                 <Menu.Item key="1">
-                    <Badge count={25} overflowCount={10} style={{ marginLeft: 10 }}>
-                        <NotificationOutlined />
+                    <Badge count={25} overflowCount={10} style={{ marginLeft: 10 }} size="small">
+                        <NotificationOutlined style={{ fontSize: '20px' }} />
                     </Badge>
                 </Menu.Item>
-                <SubMenu
-                    title={
-                        <span className="avatar">
-                            <img src={avater} alt="头像" />
-                            <i className="on bottom b-white" />
-                        </span>
-                    }
-                >
-                    <MenuItemGroup title="用户中心">
-                        <Menu.Item key="setting:1">你好 - {user?.userName}</Menu.Item>
-                        <Menu.Item key="setting:2">个人信息</Menu.Item>
-                        <Menu.Item key="logout">
-                            <span onClick={logout}>退出登录</span>
-                        </Menu.Item>
-                    </MenuItemGroup>
-                    <MenuItemGroup title="设置中心">
-                        <Menu.Item key="setting:3">个人设置</Menu.Item>
-                        <Menu.Item key="setting:4">系统设置</Menu.Item>
-                    </MenuItemGroup>
-                </SubMenu>
+
+                <Dropdown overlay={menu}>
+                    <span className="avatar">
+                        <BarsOutlined style={{ fontSize: '20px', marginLeft: '10px' }} />
+                        {/* <i className="on bottom b-white" /> */}
+                    </span>
+                </Dropdown>
             </Menu>
         </Header>
     );

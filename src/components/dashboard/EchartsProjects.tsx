@@ -3,112 +3,138 @@
  */
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
-
-let xAxisData = [];
-let data = [];
-for (let i = 0; i < 50; i++) {
-    xAxisData.push(i);
-    data.push(Math.ceil((Math.cos(i / 5) * (i / 5) + i / 6) * 5) + 10);
+const numLen = 150;
+function randomArray(max: number, min: number) {
+    return Array(numLen)
+        .fill(1)
+        .map((v) => Math.random() * (max - min) + min);
 }
+const chartData = {
+    groupv: {
+        expectedData: randomArray(55, 56),
+        actualData: randomArray(55, 56),
+    },
+    groupc: {
+        expectedData: randomArray(-1, 0),
+        actualData: randomArray(-1, 0),
+    },
+    groupt: {
+        expectedData: randomArray(18, 19),
+        actualData: randomArray(18, 19),
+    },
+    avg: {
+        expectedData: randomArray(3.35, 3.36),
+        actualData: randomArray(3.35, 3.36),
+    },
+    max: {
+        expectedData: randomArray(3.35, 3.36),
+        actualData: randomArray(3.35, 3.36),
+    },
+    min: {
+        expectedData: randomArray(3.35, 3.36),
+        actualData: randomArray(3.34, 3.36),
+    },
+    soc: {
+        expectedData: randomArray(88, 100),
+        actualData: randomArray(88, 100),
+    },
+    soh: {
+        expectedData: randomArray(99, 100),
+        actualData: randomArray(99, 100),
+    },
+};
+
+let xAxis = (function () {
+    var now: any = new Date();
+    var res = [];
+    var len = numLen;
+    while (len--) {
+        res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+        now = new Date(now - 1000);
+    }
+    return res;
+})();
+let lineChartData = chartData.soc;
 
 const option = {
-    title: {
-        text: '最近50天每天项目完成情况',
-        left: 'center',
-        textStyle: {
-            color: '#ccc',
-            fontSize: 10
-        }
+    title: { text: 'SOC', x: 'right' },
+    xAxis: {
+        data: xAxis,
+        boundaryGap: false,
+        axisTick: {
+            show: false,
+        },
     },
-    backgroundColor: '#08263a',
-    xAxis: [{
-        show: true,
-        data: xAxisData,
-        axisLabel: {
-            textStyle: {
-                color: '#ccc'
-            }
-        }
-    }, {
-        show: false,
-        data: xAxisData
-    }],
-    tooltip: {},
-    visualMap: {
-        show: false,
-        min: 0,
-        max: 50,
-        dimension: 0,
-        inRange: {
-            color: ['#4a657a', '#308e92', '#b1cfa5', '#f5d69f', '#f5898b', '#ef5055']
-        }
+    grid: {
+        left: 10,
+        right: 10,
+        bottom: 20,
+        top: 30,
+        containLabel: true,
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+        },
+        padding: [5, 10],
     },
     yAxis: {
-        axisLine: {
-            show: false
-        },
-        axisLabel: {
-            textStyle: {
-                color: '#ccc'
-            }
-        },
-        splitLine: {
-            show: true,
-            lineStyle: {
-                color: '#08263f'
-            }
-        },
         axisTick: {
-            show: false
-        }
+            show: false,
+        },
+    },
+    legend: {
+        data: ['expected', 'actual'],
     },
     series: [
         {
-        name: 'Simulate Shadow',
-        type: 'line',
-        data: data,
-        z: 2,
-        showSymbol: false,
-        animationDelay: 0,
-        animationEasing: 'linear',
-        animationDuration: 1200,
-        lineStyle: {
-            normal: {
-                color: 'transparent'
-            }
+            name: 'expected',
+            itemStyle: {
+                normal: {
+                    color: '#FF005A',
+                    lineStyle: {
+                        color: '#FF005A',
+                        width: 2,
+                    },
+                },
+            },
+            smooth: true,
+            type: 'line',
+            showSymbol: false,
+            symbol: 'circle',
+            data: lineChartData.expectedData,
+            animationDuration: 2800,
+            animationEasing: 'cubicInOut',
         },
-        areaStyle: {
-            normal: {
-                color: '#08263a',
-                shadowBlur: 50,
-                shadowColor: '#000'
-            }
-        }
-    }, {
-        name: '完成项目数',
-        type: 'bar',
-        data: data,
-        xAxisIndex: 1,
-        z: 3,
-        itemStyle: {
-            normal: {
-                barBorderRadius: 5
-            }
-        }
-    }],
-    animationEasing: 'elasticOut',
-    animationEasingUpdate: 'elasticOut',
-    animationDelay: function (idx: number) {
-        return idx * 20;
-    },
-    animationDelayUpdate: function (idx: number) {
-        return idx * 20;
-    }
+        {
+            name: 'actual',
+            smooth: true,
+            type: 'line',
+            showSymbol: false,
+            symbol: 'circle',
+            itemStyle: {
+                normal: {
+                    color: '#3888fa',
+                    lineStyle: {
+                        color: '#3888fa',
+                        width: 2,
+                    },
+                    areaStyle: {
+                        color: '#f3f8ff',
+                    },
+                },
+            },
+            data: lineChartData.actualData,
+            animationDuration: 2800,
+            animationEasing: 'quadraticOut',
+        },
+    ],
 };
 const EchartsProjects = () => (
     <ReactEcharts
         option={option}
-        style={{height: '212px', width: '100%'}}
+        style={{ height: '360px', width: '100%' }}
         className={'react_for_echarts'}
     />
 );

@@ -26,7 +26,7 @@ umbrella.config('REACT-ADMIN');
 
 // render(Page);
 
-// Webpack Hot Module Replacement API
+// // Webpack Hot Module Replacement API
 // if (module.hot) {
 //     // 隐藏You cannot change <Router routes>; it will be ignored 错误提示
 //     // react-hot-loader 使用在react-router 3.x上引起的提示，react-router 4.x不存在

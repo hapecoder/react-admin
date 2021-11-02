@@ -79,7 +79,7 @@ const SiderCustom = (props: SiderCustomProps) => {
             style={{ overflowY: 'auto' }}
             className="sider-custom"
         >
-            <div className="logo" />
+            <div className="logo text-center text">{collapsed ? 'BMS' : '电池管理系统'}</div>
             <SiderMenu
                 menus={[...routes.menus, ...smenus]}
                 onClick={menuClick}

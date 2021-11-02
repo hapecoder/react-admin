@@ -31,7 +31,12 @@ import MultipleMenu from './extension/MultipleMenu';
 import Sub1 from './smenu/Sub1';
 import Sub2 from './smenu/Sub2';
 import Env from './env';
-
+import error from './watch/error';
+import log from './watch/log';
+import role from './manage/role';
+import user from './manage/user';
+import junheng from './junheng/junheng';
+import chart from './data/chart';
 const WysiwygBundle = Loadable({
     // 按需加载富文本配置
     loader: () => import('./ui/Wysiwyg'),
@@ -67,4 +72,10 @@ export default {
     Sub1,
     Sub2,
     Env,
+    error,
+    log,
+    role,
+    user,
+    junheng,
+    chart,
 } as any;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, notification } from 'antd';
+import { Layout } from 'antd';
 import umbrella from 'umbrella-storage';
 import { useAlita } from 'redux-alita';
 import Routes from './routes';
@@ -9,7 +9,6 @@ import { ThemePicker, Copyright } from './components/widget';
 import { checkLogin } from './utils';
 import { fetchMenu } from './service';
 import classNames from 'classnames';
-import { SmileOutlined } from '@ant-design/icons';
 
 const { Content, Footer } = Layout;
 
@@ -36,45 +35,6 @@ function handleResize(handler: (isMobile: boolean) => void) {
     window.addEventListener('resize', resizeListener.bind(null, handler));
 }
 
-function openFNotification() {
-    const openNotification = () => {
-        notification.open({
-            message: '博主-yezihaohao',
-            description: (
-                <div>
-                    <p>
-                        GitHub地址：
-                        <a
-                            href="https://github.com/yezihaohao"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            https://github.com/yezihaohao
-                        </a>
-                    </p>
-                    <p>
-                        博客地址：
-                        <a
-                            href="https://yezihaohao.github.io/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            https://yezihaohao.github.io/
-                        </a>
-                    </p>
-                </div>
-            ),
-            icon: <SmileOutlined style={{ color: 'red' }} />,
-            duration: 0,
-        });
-        umbrella.setLocalStorage('hideBlog', true);
-    };
-    const storageFirst = umbrella.getLocalStorage('hideBlog');
-    if (!storageFirst) {
-        openNotification();
-    }
-}
-
 /**
  * 获取服务端异步菜单
  * @param handler 执行回调
@@ -85,7 +45,27 @@ function fetchSmenu(handler: any) {
         // this.props.setAlitaState({ stateName: 'smenus', data: menus });
     };
     setAlitaMenu(umbrella.getLocalStorage('smenus') || []);
-    fetchMenu().then((smenus) => {
+    fetchMenu().then((smenus: any) => {
+        smenus = [
+            {
+                key: '/app/smenu',
+                title: '异步菜单',
+                icon: 'api',
+                subs: [
+                    {
+                        key: '/app/smenu/sub1',
+                        title: '权限1',
+                        component: 'Sub1',
+                    },
+                    {
+                        key: '/app/smenu/sub2',
+                        title: '权限2',
+                        component: 'Sub2',
+                    },
+                ],
+            },
+        ];
+        console.log('异步菜单', smenus);
         setAlitaMenu(smenus);
         umbrella.setLocalStorage('smenus', smenus);
     });
@@ -105,7 +85,7 @@ const App = (props: AppProps) => {
         setAlita('responsive', { isMobile: checkIsMobile() });
 
         handleResize((isMobile: boolean) => setAlita('responsive', { isMobile }));
-        openFNotification();
+        //openFNotification();
         fetchSmenu((smenus: any[]) => setAlita('smenus', smenus));
     }, [setAlita]);
 
@@ -125,6 +105,7 @@ const App = (props: AppProps) => {
                 <Content className="app_layout_content">
                     <Routes auth={auth} />
                 </Content>
+
                 <Footer className="app_layout_foot">
                     <Copyright />
                 </Footer>

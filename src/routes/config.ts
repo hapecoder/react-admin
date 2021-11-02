@@ -21,14 +21,53 @@ const menus: {
 } = {
     menus: [
         // 菜单相关路由
-        { key: '/app/dashboard/index', title: '首页', icon: 'mobile', component: 'Dashboard' },
+        { key: '/app/dashboard/index', title: '首页', icon: 'home', component: 'Dashboard' },
+
+        {
+            key: '/app/watch',
+            title: '系统监控',
+            icon: 'delay',
+            subs: [
+                {
+                    key: '/app/watch/error',
+                    title: '异常报警',
+                    component: 'error',
+                    icon: 'jinggao',
+                },
+                {
+                    key: '/app/watch/log',
+                    title: '系统日志',
+                    component: 'log',
+                    icon: 'online',
+                },
+            ],
+        },
+        {
+            key: '/app/manage',
+            title: '系统管理',
+            icon: 'aircraft',
+            subs: [
+                {
+                    key: '/app/manage/user',
+                    title: '用户管理',
+                    component: 'user',
+                    icon: 'checkin',
+                },
+                {
+                    key: '/app/manage/role',
+                    title: '权限管理',
+                    component: 'role',
+                    icon: 'refund',
+                },
+            ],
+        },
+        { key: '/app/data/chart', title: '历史数据', icon: 'date', component: 'chart' },
+        { key: '/app/junheng/junheng', title: '均衡管理', icon: 'trip', component: 'junheng' },
         {
             key: '/app/ui',
             title: 'UI',
-            icon: 'scan',
             subs: [
                 { key: '/app/ui/buttons', title: '按钮', component: 'Buttons' },
-                { key: '/app/ui/icons', title: '图标', component: 'Icons' },
                 { key: '/app/ui/spins', title: '加载中', component: 'Spins' },
                 { key: '/app/ui/modals', title: '对话框', component: 'Modals' },
                 { key: '/app/ui/notifications', title: '通知提醒框', component: 'Notifications' },
@@ -104,12 +143,6 @@ const menus: {
             ],
         },
         {
-            key: '/app/cssModule',
-            title: 'cssModule',
-            icon: 'star',
-            component: 'Cssmodule',
-        },
-        {
             key: '/app/extension',
             title: '功能扩展',
             icon: 'bars',
@@ -125,23 +158,6 @@ const menus: {
                     title: '访客模式',
                     component: 'Visitor',
                     login: true,
-                },
-                {
-                    key: '/app/extension/multiple',
-                    title: '多级菜单',
-                    subs: [
-                        {
-                            key: '/app/extension/multiple/child',
-                            title: '多级菜单子菜单',
-                            subs: [
-                                {
-                                    key: '/app/extension/multiple/child/child',
-                                    title: '多级菜单子子菜单',
-                                    component: 'MultipleMenu',
-                                },
-                            ],
-                        },
-                    ],
                 },
                 {
                     key: '/app/extension/env',
