@@ -114,12 +114,6 @@
             "path": "node_modules/cz-conventional-changelog"
         }
     },
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint -e $GIT_PARAMS",
-            "pre-commit": "pretty-quick --staged"
-        }
-    },
     "eslintConfig": {
         "extends": "react-app"
     },
@@ -198,8 +192,6 @@
         ]
     },
     "devDependencies": {
-        "@commitlint/cli": "^8.2.0",
-        "@commitlint/config-conventional": "^8.2.0",
         "antd-theme-generator": "^1.1.7",
         "babel-plugin-import": "^1.12.2",
         "commitizen": "^4.0.3",

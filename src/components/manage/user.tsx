@@ -30,7 +30,7 @@ const columns = [
         key: 'enabled',
         render: (text: any, record: any) => (
             <div>
-                <Switch checked={record.enabled} />
+                <Switch checked={record.enabled} style={{ border: 'none' }} />
             </div>
         ),
     },
