@@ -53,8 +53,8 @@ const data = Array(16)
         return {
             key: i + 1,
             volt: (3.339 + (a - 0.5) * 0.005).toFixed(3),
-            curr: (-0.7 + Math.random() - 0.5).toFixed(1),
-            temp: (18.125 + Math.random() - 0.5).toFixed(3),
+            curr: -0.5,
+            temp: (18.125 + a - 0.5).toFixed(3),
             soc: (95.7 + a - 0.5).toFixed(1),
             soh: 100,
             enabled: false
@@ -93,9 +93,6 @@ const BasicTable = () => {
                             <span className="text-1x">电压极差：</span><span className="text-1x text-danger"><ArrowDownOutlined />0.12V</span>
                         </Col>
                     </Row>
-
-
-
                 );
             }}
         />

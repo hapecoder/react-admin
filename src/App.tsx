@@ -47,23 +47,23 @@ function fetchSmenu(handler: any) {
     setAlitaMenu(umbrella.getLocalStorage('smenus') || []);
     fetchMenu().then((smenus: any) => {
         smenus = [
-            {
-                key: '/app/smenu',
-                title: '异步菜单',
-                icon: 'api',
-                subs: [
-                    {
-                        key: '/app/smenu/sub1',
-                        title: '权限1',
-                        component: 'Sub1',
-                    },
-                    {
-                        key: '/app/smenu/sub2',
-                        title: '权限2',
-                        component: 'Sub2',
-                    },
-                ],
-            },
+            // {
+            //     key: '/app/smenu',
+            //     title: '异步菜单',
+            //     icon: 'api',
+            //     subs: [
+            //         {
+            //             key: '/app/smenu/sub1',
+            //             title: '权限1',
+            //             component: 'Sub1',
+            //         },
+            //         {
+            //             key: '/app/smenu/sub2',
+            //             title: '权限2',
+            //             component: 'Sub2',
+            //         },
+            //     ],
+            // },
         ];
         console.log('异步菜单', smenus);
         setAlitaMenu(smenus);

@@ -116,8 +116,8 @@ const options = [
                 label: '温度',
             },
             {
-                value: 'zsoc',
-                label: 'SOC',
+                value: 'zsoe',
+                label: 'SOE',
             },
             {
                 value: 'zsoh',
@@ -146,8 +146,8 @@ const options = [
                 label: '温度',
             },
             {
-                value: 'dsoc',
-                label: 'SOC',
+                value: 'dsoe',
+                label: 'SOE',
             },
             {
                 value: 'dsoh',

@@ -73,7 +73,7 @@ class Dashboard extends React.Component {
                                         />
                                     </div>
                                     <div className="clear">
-                                        <div className="text-muted">SOC</div>
+                                        <div className="text-muted">SOE</div>
                                         <h2>93.3%</h2>
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@ class Dashboard extends React.Component {
                                     </div>
                                     <div className="clear">
                                         <div className="text-muted">SOP</div>
-                                        <h2>10W</h2>
+                                        <h2>--W</h2>
                                     </div>
                                 </div>
                             </Card>
@@ -123,6 +123,7 @@ class Dashboard extends React.Component {
                             <Card bordered={false}>
                                 <div className="pb-m">
                                     <h3>均衡管理</h3>
+                                    <small>已开启</small>
                                 </div>
                                 <span className="card-tool">
                                     <SyncOutlined />
@@ -147,7 +148,7 @@ class Dashboard extends React.Component {
                                     <Col span={8}>
                                         <Statistic
                                             title="电压极差"
-                                            value={'0.04V'}
+                                            value={'0.06V'}
                                             prefix={<ArrowDownOutlined />}
                                             valueStyle={{ color: '#cf1322' }}
                                         />
@@ -155,7 +156,7 @@ class Dashboard extends React.Component {
                                 </Row>
                                 <Row gutter={16} className="mb-m">
                                     <Button type="primary" block>
-                                        开启均衡
+                                        关闭均衡
                                     </Button>
                                 </Row>
                                 <Row gutter={16} className="mb-m">

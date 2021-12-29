@@ -9,7 +9,7 @@
 import React from 'react';
 
 const Copyright = () => {
-    return <div>BMS In Car ©{new Date().getFullYear()} Created by mschen@zju.edu.cn</div>;
+    return <div>BMS In Car ©{new Date().getFullYear()} Created by mschen</div>;
 };
 
 export default Copyright;

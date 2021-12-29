@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
-const numLen = 150;
+const numLen = 180;
 function randomArray(max: number, min: number) {
     return Array(numLen)
         .fill(1)
@@ -54,10 +54,10 @@ let xAxis = (function () {
     }
     return res;
 })();
-let lineChartData = chartData.soc;
+let lineChartData = chartData.groupv;
 
 const option = {
-    title: { text: 'SOC', x: 'right' },
+    title: { text: '电压', x: 'right' },
     xAxis: {
         data: xAxis,
         boundaryGap: false,

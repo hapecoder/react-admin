@@ -36,6 +36,7 @@ import log from './watch/log';
 import role from './manage/role';
 import user from './manage/user';
 import junheng from './junheng/junheng';
+import simulation from './simulation/simulation';
 import chart from './data/chart';
 const WysiwygBundle = Loadable({
     // 按需加载富文本配置
@@ -77,5 +78,6 @@ export default {
     role,
     user,
     junheng,
+    simulation,
     chart,
 } as any;

@@ -55,7 +55,7 @@ const Login = (props: LoginProps) => {
         <div className="login">
             <div className="login-form">
                 <div className="login-logo">
-                    <span>React Admin</span>
+                    <span>电池管理系统</span>
                     <PwaInstaller />
                 </div>
                 <Form onFinish={handleSubmit} style={{ maxWidth: '300px' }}>
@@ -65,18 +65,19 @@ const Login = (props: LoginProps) => {
                     >
                         <Input
                             prefix={<UserOutlined size={13} />}
-                            placeholder="管理员输入admin, 游客输入guest"
+                            placeholder="请输入用户名"
                         />
                     </FormItem>
                     <FormItem name="password" rules={[{ required: true, message: '请输入密码!' }]}>
                         <Input
                             prefix={<LockOutlined size={13} />}
                             type="password"
-                            placeholder="管理员输入admin, 游客输入guest"
+                            placeholder="请输入密码"
                         />
+
                     </FormItem>
                     <FormItem>
-                        <span className="login-form-forgot" style={{ float: 'right' }}>
+                        <span className="login-form-forgot mb-s" style={{ float: 'right' }}>
                             忘记密码
                         </span>
                         <Button
@@ -87,13 +88,7 @@ const Login = (props: LoginProps) => {
                         >
                             登录
                         </Button>
-                        <p style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <span>或 现在就去注册!</span>
-                            <span onClick={gitHub}>
-                                <GithubOutlined />
-                                (第三方登录)
-                            </span>
-                        </p>
+
                     </FormItem>
                 </Form>
             </div>
